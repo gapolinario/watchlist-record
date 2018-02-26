@@ -1,0 +1,2 @@
+#!/bin/bash
+python /home/gabriel/Dropbox/Blog/Letterboxd/add_record.py
