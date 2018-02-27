@@ -1,10 +1,13 @@
+# check whether destination folder exists
 fexists := $(shell [ -f folder ] && echo 1 || echo 0)
 
 ifeq ($(fexists),1)
-        folder := $(shell cat folder)
+     folder := $(shell cat folder)
 else
-        folder := ./
+     folder := ./
 endif
+
+user := $(shell cat user)
 
 .PHONY: all
 ## all : update record and plot it
@@ -18,7 +21,7 @@ graph:
 .PHONY: update
 ## update : update watchlist record
 update:
-	python add_record.py $(folder)
+	python add_record.py $(folder) $(user)
 
 .PHONY: start
 ## start : start or reset watchlist record

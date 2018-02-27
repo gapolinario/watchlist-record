@@ -7,9 +7,11 @@ import re
 import sys
 
 theFolder=sys.argv[1]
+theUser=sys.argv[2]
+
 theList=theFolder+"watchRecord.csv"
 titles=['Date','Number']
-page = requests.get('https://letterboxd.com/gapolinario/watchlist/')
+page = requests.get('https://letterboxd.com/'+theUser+'/watchlist/')
 match=re.search('to see (\d+)\&nbsp',page.text)
 num=int(match.group(1))
 watchRecord=pd.read_csv(theList)
