@@ -1,11 +1,22 @@
-# watchlist-record
+# Watchlist Record
+
 Track numbers of movies in my Letterboxd watchlist over time
 
-Create a file called `folder` and the content of this file
-is the path to the directory where you are going to 
-store your data.
-If this file does not exist, create record file
-at the same directory.
+## How to
+
+Navigate to this project folder, on your computer and
+run its configuration:
+
+```bash
+make start
+```
+
+The configuration will ask for your Letterboxd username
+and a folde where to store the files,
+you can type "./" if you want to store the files
+in the same folder as the code,
+or another file, like "~/Documents/Letterboxd/",
+for instance.
 
 Add the file called `watchlist-sh`, in this folder, to `/etc/cron.weekly`
 (or daily, according to your movie watching frequency)
