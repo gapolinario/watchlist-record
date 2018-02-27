@@ -19,5 +19,5 @@ Add the file called `watchlist-sh`, in this folder, to `/etc/cron.weekly`
 
 Here is my watchlist as a graph:
 
-![My watchlist record](watchGraph.pdf "My watchlist record")
+![My watchlist record](https://github.com/gapolinario/watchlist-record/blob/master/watchGraph.pdf "My watchlist record")
 
