@@ -14,8 +14,6 @@ Add the file called `watchlist-sh`, in this folder, to `/etc/cron.weekly`
 
 - Daily updates still don't work
 - watchlist-sh file is old and does not work
-- Use config file instead of folder and user
-- Start command should ask for folder and username, this simplifies the makefile
 
 Here is my watchlist as a graph:
 
