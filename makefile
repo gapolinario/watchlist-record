@@ -1,13 +1,5 @@
-# check whether destination folder exists
-fexists := $(shell [ -f folder ] && echo 1 || echo 0)
-
-ifeq ($(fexists),1)
-     folder := $(shell cat folder)
-else
-     folder := ./
-endif
-
-user := $(shell cat user)
+folder := $(shell grep folder config | awk '{print $$2}')
+user   := $(shell grep user config | awk '{print $$2}')
 
 .PHONY: all
 ## all : update record and plot it
@@ -26,8 +18,8 @@ update:
 .PHONY: start
 ## start : start or reset watchlist record
 start:
-	bash start.sh $(folder)
+	bash start.sh
 
-.PHONY: #help
-help : makefile
+.PHONY: help
+help: makefile
 	@sed -n 's/^##//p' $<
