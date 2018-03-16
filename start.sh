@@ -10,6 +10,8 @@ printf "Date,Number\n" > $folder/watchRecord.csv
 
 printf "folder: $folder\nuser: $user\n" > config
 
+#printf "#!/bin/bash\nmake -C $folder all\n"
+
 # make a bash executable folder and copy it to
 # cron.weekly, this might work
 
