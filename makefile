@@ -5,6 +5,11 @@ user   := $(shell grep user config | awk '{print $$2}')
 ## all : update record and plot it
 all: update graph
 
+.PHONY: png
+## png : copy plot image from folder and update Github figure
+png:
+	convert -density 300 $(folder)/watchGraph.pdf -quality 100 watchGraph.png
+
 .PHONY: graph
 ## graph : plot the watchlist record
 graph:
