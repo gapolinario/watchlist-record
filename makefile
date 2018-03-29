@@ -1,6 +1,22 @@
 folder := $(shell grep folder config | awk '{print $$2}')
 user   := $(shell grep user config | awk '{print $$2}')
 
+# SETUP STAGE
+
+.PHONY: start
+## start : start or reset watchlist record
+start:
+	bash start.sh
+
+.PHONY: anacron
+## anacron : setup daily updates to watchlist record
+anacron:
+	printf "%c%c%s\n%s\n" "#" "!" "/bin/bash" "make -C $(folder) all" > $(folder)/watchlist
+	sudo cp $(folder)/watchlist /etc/cron.daily
+	sudo chmod +x /etc/cron.daily/watchlist
+
+# RUNNING STAGE
+
 .PHONY: all
 ## all : update record and plot it
 all: update graph
@@ -19,11 +35,9 @@ graph:
 ## update : update watchlist record
 update:
 	python add_record.py $(folder) $(user)
+	cp $(folder)/watchRecord.csv $(folder)/watchRecord.csv.bup
 
-.PHONY: start
-## start : start or reset watchlist record
-start:
-	bash start.sh
+# OTHERS
 
 .PHONY: help
 help: makefile
