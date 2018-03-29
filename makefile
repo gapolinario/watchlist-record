@@ -1,6 +1,9 @@
 folder := $(shell grep folder config | awk '{print $$2}')
 user   := $(shell grep user config | awk '{print $$2}')
 
+data=watchRecord.csv
+figure=watchGraph
+
 # SETUP STAGE
 
 .PHONY: start
@@ -24,7 +27,7 @@ all: update graph
 .PHONY: png
 ## png : copy plot image from folder and update Github figure
 png:
-	convert -density 300 $(folder)/watchGraph.pdf -quality 100 $(shell pwd)/watchGraph.png
+	convert -density 300 $(folder)$(figure).pdf -quality 100 $(shell pwd)/$(figure).png
 
 .PHONY: graph
 ## graph : plot the watchlist record
@@ -35,12 +38,16 @@ graph:
 ## update : update watchlist record
 update:
 	python add_record.py $(folder) $(user)
-	cp $(folder)/watchRecord.csv $(folder)/watchRecord.csv.bup
+	cp $(folder)/$(data) $(folder)$(data).bup
 
 .PHONY: dupes
-## dupes : remove lines with the same date
+## dupes : remove lines with the same date, keeps only the first entry
 dupes:
-	@echo "I still don't know how to do this"
+	awk -F ',' '!seen[$$1]++' $(folder)$(data) > tmp
+	cp tmp $(folder)$(data)
+	rm tmp
+	cp $(folder)$(data) $(folder)$(dat).bup
+
 
 # OTHERS
 
