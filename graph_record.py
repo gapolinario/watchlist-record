@@ -1,5 +1,9 @@
 # coding: utf-8
 
+# no display for matplotlib
+import matplotlib as mpl
+mpl.use('Agg')
+
 import datetime as dt
 import pandas as pd
 import matplotlib.pyplot as plt
