@@ -1,5 +1,8 @@
 # coding: utf-8
 
+# https://github.com/pandas-dev/pandas/issues/18301
+# pandas register error and a solution is described in this page
+
 # no display for matplotlib
 import matplotlib as mpl
 mpl.use('Agg')

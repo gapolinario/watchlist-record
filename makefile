@@ -4,12 +4,30 @@ user   := $(shell grep user config | awk '{print $$2}')
 data=watchRecord.csv
 figure=watchGraph
 
+# AUTO
+
+.PHONY: all
+## all : update record and plot it
+all: update graph
+
 # SETUP STAGE
 
 .PHONY: start
 ## start : start or reset watchlist record
+# not tested
 start:
-	bash start.sh
+	echo "this action resets all records, are you sure? [y/n]"
+	read p
+	case $p in
+	        y)
+	                bash start.sh
+	        ;;
+	        n)
+	                printf 'Aborted by user\n'
+	        ;;
+	        *)
+	                printf 'Options are y/n\n'
+	esac
 
 .PHONY: anacron
 ## anacron : setup daily updates with anacrontab (requires sudo)
@@ -19,10 +37,6 @@ anacron:
 	chmod +x /etc/cron.daily/watchlist
 
 # RUNNING STAGE
-
-.PHONY: all
-## all : update record and plot it
-all: update graph
 
 .PHONY: png
 ## png : copy plot image from folder and update Github figure
