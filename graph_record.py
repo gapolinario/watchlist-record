@@ -13,6 +13,9 @@ import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 import sys
 
+from pandas.plotting import register_matplotlib_converters
+register_matplotlib_converters()
+
 theFolder=sys.argv[1]
 watchRecord=pd.read_csv(theFolder+"watchRecord.csv")
 
